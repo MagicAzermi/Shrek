@@ -55,6 +55,15 @@ namespace Shrek
         private void drawSnake()
         {
             snakeParts = new PictureBox[snakeSize];
+
+            for (int i = 0; i < snakeSize; i++) {
+                snakeParts[i] = new PictureBox();
+                snakeParts[i].Size = new Size(15, 15);
+                snakeParts[i].BackColor = Color.Green;
+                snakeParts[i].BorderStyle = BorderStyle.FixedSingle;
+                snakeParts[i].Location = new Point(location.X - (15 * i), location.Y);
+                gameField.Controls.Add(snakeParts[i]);
+            }
         }
     }
 }
