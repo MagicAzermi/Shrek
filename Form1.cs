@@ -49,7 +49,31 @@ namespace Shrek
 
         private void drawFood()
         {
-            
+            Random random = new Random();
+            int Xrnd = random.Next(38) * 15;
+            int Yrnd = random.Next(30) * 15;
+            bool isSnake = true;
+
+            while (isSnake) {
+                for (int i = 0; i < snakeSize; i++) {
+                    if (snakeParts[i].Location == new Point(Xrnd, Yrnd))
+                    {
+                        Xrnd = random.Next(38) * 15;
+                        Yrnd = random.Next(30) * 15;
+                    }
+                    else {
+                        isSnake = false;
+                    }
+                }
+            }
+
+            if (isSnake == false) {
+                foodLocation = new Point(Xrnd, Yrnd);
+                food.Size = new Size(15, 15);
+                food.BackColor = Color.Red;
+                food.BorderStyle = BorderStyle.FixedSingle;
+                gameField.Controls.Add(food);
+            }
         }
 
         private void drawSnake()
