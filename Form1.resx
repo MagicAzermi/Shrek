@@ -1030,12 +1030,12 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>25</value>
+    <value>69</value>
   </metadata>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABVYAAAMACAIAAABAXKuVAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAA/7JJREFUeF7s/YeC5EaSpQtnKGitZWgtUmtVWYrs7tm5977/0/znuEeiojKLZDWb
+        vwAADr8BOAVTJAAA/7JJREFUeF7s/YeC5EaSpQtnKGitZWgtUmtVWYrs7tm5977/0/znuEeiojKLZDWb
         PTO7/1ZbB5EIBOAa9pmbmx+1W+1up9vt9JSu0kgXf71K7+D8bwl+3ml3cCsIDt7cjRcc3PDPS6fXCJ4i
         HwT5mRT+vDSPeHO+kd5hkr6XTrcn5V9PEu4gb3WYHss00ySsq7xf50URR5Fr27qu43FIN3+i9nRN1UzD
         tE3bc53A9wLfx6dpWKjlI/EPddQ6av1Q2gfy7eRrC8GnLPYf3kFWPaQnkorEiDLpsjBk+Yg7yLz8VVWG

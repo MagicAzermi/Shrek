@@ -68,6 +68,7 @@ namespace Shrek
             this.trackBar.Size = new System.Drawing.Size(203, 45);
             this.trackBar.TabIndex = 1;
             this.trackBar.Value = 50;
+            this.trackBar.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // gameField
             // 
@@ -166,6 +167,7 @@ namespace Shrek
             // gameTimer
             // 
             this.gameTimer.Interval = 250;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // Form1
             // 

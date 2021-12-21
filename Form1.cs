@@ -89,5 +89,48 @@ namespace Shrek
                 gameField.Controls.Add(snakeParts[i]);
             }
         }
+
+        private void trackBar_Scroll(object sender, EventArgs e)
+        {
+            gameTimer.Interval = 1000 - (10 * trackBar.Value);
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            Move();
+        }
+
+        private void Move()
+        {
+            Point point = new Point(0, 0);
+
+            for (int i = 0; i < snakeSize; i++) {
+                if (i == 0)
+                {
+                    point = snakeParts[i].Location;
+                    if (direction == "Left")
+                    {
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X - 15, snakeParts[i].Location.Y);
+                    }
+                    if (direction == "Right")
+                    {
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X + 15, snakeParts[i].Location.Y);
+                    }
+                    if (direction == "Top")
+                    {
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y - 15);
+                    }
+                    if (direction == "Down")
+                    {
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X - 15, snakeParts[i].Location.Y + 15);
+                    }
+                }
+                else {
+                    Point newPoint = snakeParts[i].Location;
+                    snakeParts[i].Location = point;
+                    point = newPoint;
+                }
+            }
+        }
     }
 }
