@@ -63,11 +63,10 @@ namespace Shrek
             // 
             this.trackBar.BackColor = System.Drawing.Color.Cornsilk;
             this.trackBar.Location = new System.Drawing.Point(267, 9);
-            this.trackBar.Maximum = 100;
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(203, 45);
             this.trackBar.TabIndex = 1;
-            this.trackBar.Value = 50;
+            this.trackBar.Value = 5;
             this.trackBar.Scroll += new System.EventHandler(this.trackBar_Scroll);
             // 
             // gameField
@@ -75,7 +74,7 @@ namespace Shrek
             this.gameField.BackColor = System.Drawing.Color.OliveDrab;
             this.gameField.Location = new System.Drawing.Point(11, 84);
             this.gameField.Name = "gameField";
-            this.gameField.Size = new System.Drawing.Size(732, 532);
+            this.gameField.Size = new System.Drawing.Size(750, 525);
             this.gameField.TabIndex = 2;
             // 
             // label2
@@ -106,7 +105,7 @@ namespace Shrek
             this.panel2.Font = new System.Drawing.Font("AuntJudyBetter", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel2.Location = new System.Drawing.Point(792, 84);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(493, 532);
+            this.panel2.Size = new System.Drawing.Size(493, 525);
             this.panel2.TabIndex = 5;
             // 
             // dataGridView1

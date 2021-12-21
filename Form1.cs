@@ -16,8 +16,8 @@ namespace Shrek
         PictureBox[] snakeParts;
         int snakeSize = 5;
         Point location = new Point(120, 120);
-        string direction = "Right";
-        bool changingDirection = false;
+        string direction;
+        bool changingDirection;
 
         //food cfg
         PictureBox food = new PictureBox();
@@ -50,16 +50,16 @@ namespace Shrek
         private void drawFood()
         {
             Random random = new Random();
-            int Xrnd = random.Next(38) * 15;
-            int Yrnd = random.Next(30) * 15;
+            int Xrnd = random.Next(50) * 15;
+            int Yrnd = random.Next(35) * 15;
             bool isSnake = true;
 
             while (isSnake) {
                 for (int i = 0; i < snakeSize; i++) {
                     if (snakeParts[i].Location == new Point(Xrnd, Yrnd))
                     {
-                        Xrnd = random.Next(38) * 15;
-                        Yrnd = random.Next(30) * 15;
+                        Xrnd = random.Next(50) * 15;
+                        Yrnd = random.Next(35) * 15;
                     }
                     else {
                         isSnake = false;
@@ -92,7 +92,7 @@ namespace Shrek
 
         private void trackBar_Scroll(object sender, EventArgs e)
         {
-            gameTimer.Interval = 1000 - (10 * trackBar.Value);
+            gameTimer.Interval = 150 - (10 * trackBar.Value);
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -100,7 +100,9 @@ namespace Shrek
             Move();
         }
 
+#pragma warning disable CS0108 // Член скрывает унаследованный член: отсутствует новое ключевое слово
         private void Move()
+#pragma warning restore CS0108 // Член скрывает унаследованный член: отсутствует новое ключевое слово
         {
             Point point = new Point(0, 0);
 
@@ -122,7 +124,7 @@ namespace Shrek
                     }
                     if (direction == "Down")
                     {
-                        snakeParts[i].Location = new Point(snakeParts[i].Location.X - 15, snakeParts[i].Location.Y + 15);
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y + 15);
                     }
                 }
                 else {
@@ -131,6 +133,30 @@ namespace Shrek
                     point = newPoint;
                 }
             }
+            changingDirection = false;
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) { 
+            if (keyData ==(Keys.Up) && direction != "Down" && changingDirection != true){
+                direction = "Top";
+                changingDirection = true;
+            }
+            if (keyData == (Keys.Down) && direction != "Top" && changingDirection != true)
+            {
+                direction = "Down";
+                changingDirection = true;
+            }
+            if (keyData == (Keys.Right) && direction != "Left" && changingDirection != true)
+            {
+                direction = "Right";
+                changingDirection = true;
+            }
+            if (keyData == (Keys.Left) && direction != "Right" && changingDirection != true)
+            {
+                direction = "Left";
+                changingDirection = true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
