@@ -14,14 +14,15 @@ namespace Shrek
     {
         //snake cfg
         PictureBox[] snakeParts;
-        int snakeSize = 5;
-        Point location = new Point(120, 120);
+        int snakeSize;
+        Point location;
         string direction;
         bool changingDirection;
 
+
         //food cfg
         PictureBox food = new PictureBox();
-        Point foodLocation = new Point(0, 0);
+        Point foodLocation;
 
         public Form1()
         {
@@ -49,7 +50,7 @@ namespace Shrek
 
         private void drawFood()
         {
-            Random random = new();
+            Random random = new Random();
             int Xrnd = random.Next(50) * 15;
             int Yrnd = random.Next(35) * 15;
             bool isSnake = true;
@@ -73,6 +74,7 @@ namespace Shrek
                 food.Size = new Size(15, 15);
                 food.BackColor = Color.Red;
                 food.BorderStyle = BorderStyle.FixedSingle;
+                food.Location = foodLocation;
                 gameField.Controls.Add(food);
             }
         }
@@ -155,6 +157,42 @@ namespace Shrek
 
                 changingDirection = false;
         }
+
+        private void stopGame()
+        {
+            
+        }
+
+        private void eatFood()
+        {
+            snakeSize++;
+
+            PictureBox[] pastSnake = snakeParts;
+            gameField.Controls.Clear();
+            snakeParts = new PictureBox[snakeSize];
+
+            for (int i = 0; i < snakeSize; i++) {
+                snakeParts[i] = new PictureBox();
+                snakeParts[i].Size = new Size(15, 15);
+                snakeParts[i].BackColor = Color.Green;
+                snakeParts[i].BorderStyle = BorderStyle.FixedSingle;
+
+                if (i == 0)
+                {
+                    snakeParts[i].Location = foodLocation;
+                }
+
+                else {
+                    snakeParts[i].Location = pastSnake[i - 1].Location;
+                }
+                gameField.Controls.Add(snakeParts[i]);
+            }
+
+            int currentGameScore = Int32.Parse(scoreNumber.Text);
+            int newGameScore = currentGameScore + 1;
+            scoreNumber.Text = newGameScore + "";
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) { 
             if (keyData ==(Keys.Up) && direction != "Down" && changingDirection != true){
                 direction = "Top";
