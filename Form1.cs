@@ -49,7 +49,7 @@ namespace Shrek
 
         private void drawFood()
         {
-            Random random = new Random();
+            Random random = new();
             int Xrnd = random.Next(50) * 15;
             int Yrnd = random.Next(35) * 15;
             bool isSnake = true;
@@ -61,6 +61,7 @@ namespace Shrek
                         Xrnd = random.Next(50) * 15;
                         Yrnd = random.Next(35) * 15;
                     }
+
                     else {
                         isSnake = false;
                     }
@@ -114,14 +115,17 @@ namespace Shrek
                     {
                         snakeParts[i].Location = new Point(snakeParts[i].Location.X - 15, snakeParts[i].Location.Y);
                     }
+
                     if (direction == "Right")
                     {
                         snakeParts[i].Location = new Point(snakeParts[i].Location.X + 15, snakeParts[i].Location.Y);
                     }
+
                     if (direction == "Top")
                     {
                         snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y - 15);
                     }
+
                     if (direction == "Down")
                     {
                         snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y + 15);
@@ -133,23 +137,42 @@ namespace Shrek
                     point = newPoint;
                 }
             }
-            changingDirection = false;
+
+            if (snakeParts[0].Location == foodLocation) {
+                eatFood();
+                drawFood();
+            }
+
+            if (snakeParts[0].Location.X < 0 || snakeParts[0].Location.X >= 750 || snakeParts[0].Location.Y < 0 || snakeParts[0].Location.Y >= 525) {
+                stopGame();
+            }
+
+            for (int i = 3; i < snakeSize; i++) {
+                if (snakeParts[0].Location == snakeParts[i].Location) {
+                    stopGame();
+                }
+            }
+
+                changingDirection = false;
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) { 
             if (keyData ==(Keys.Up) && direction != "Down" && changingDirection != true){
                 direction = "Top";
                 changingDirection = true;
             }
+
             if (keyData == (Keys.Down) && direction != "Top" && changingDirection != true)
             {
                 direction = "Down";
                 changingDirection = true;
             }
+
             if (keyData == (Keys.Right) && direction != "Left" && changingDirection != true)
             {
                 direction = "Right";
                 changingDirection = true;
             }
+
             if (keyData == (Keys.Left) && direction != "Right" && changingDirection != true)
             {
                 direction = "Left";
