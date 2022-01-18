@@ -94,6 +94,7 @@ namespace Shrek
             this.nameField.Name = "nameField";
             this.nameField.Size = new System.Drawing.Size(205, 23);
             this.nameField.TabIndex = 4;
+            this.nameField.Text = "Player";
             // 
             // panel2
             // 
@@ -115,7 +116,7 @@ namespace Shrek
             this.dataGridView1.Location = new System.Drawing.Point(17, 136);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(246, 378);
+            this.dataGridView1.Size = new System.Drawing.Size(351, 378);
             this.dataGridView1.TabIndex = 3;
             // 
             // label5

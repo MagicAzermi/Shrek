@@ -250,12 +250,31 @@ namespace Shrek
 
         private void AddScoretoDB()
         {
-            throw new NotImplementedException();
+            string query = "INSERT INTO [Table](Date, PlayerName, CurrentScore) VALUES(@Date, @PlayerName, @CurrentScore);";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection)) {
+
+                
+                command.Parameters.Add("@Date", SqlDbType.DateTime).Value = DateTime.Now;
+                command.Parameters.Add("@PlayerName", SqlDbType.VarChar).Value = nameField.Text;
+                command.Parameters.Add("@CurrentScore", SqlDbType.Int).Value = scoreNumber.Text;
+
+                try {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception) {
+
+                    throw;
+                }
+            }
         }
 
         private void UpdateBoard()
         {
-            string query = "SELECT Id,Date,PlayerName,CurrentScore FROM scoreBoard";
+            string query = "SELECT Date,PlayerName,CurrentScore FROM [Table]";
 
             using(SqlConnection connection = new SqlConnection(connectionString)) {
 
