@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +25,10 @@ namespace Shrek
         //food cfg
         PictureBox food = new PictureBox();
         Point foodLocation;
+
+        static String path = Path.GetFullPath("C:/Users/Суслан/Documents/GitHub/LazyProject/Shrek");
+        static String dbName = "data.mdf";
+        string connectionString = @"Data Source=(Localdb)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + "; Integrated Security=True;";
 
         public Form1()
         {
@@ -158,11 +164,6 @@ namespace Shrek
                 changingDirection = false;
         }
 
-        private void stopGame()
-        {
-            
-        }
-
         private void eatFood()
         {
             snakeSize++;
@@ -218,6 +219,59 @@ namespace Shrek
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
+        private void stopGame() 
+        {
+            gameTimer.Stop();
+            gameStart.Enabled = true;
+            trackBar.Enabled = true;
+            nameField.Enabled = true;
+
+            Label over = new Label();
+            over.Text = "Ты\nПроиграл";
+            over.ForeColor = Color.Green;
+            over.Font = new Font("Arial", 100, FontStyle.Bold);
+            over.Size = over.PreferredSize;
+            over.TextAlign = ContentAlignment.MiddleCenter;
+            over.BringToFront();
+
+            int X = gameField.Width / 2 - over.Width / 2;
+            int Y = gameField.Height / 2 - over.Height / 2;
+            over.Location = new Point(X, Y);
+
+            gameField.Controls.Add(over);
+            over.BringToFront();
+
+            AddScoretoDB();
+            UpdateBoard();
+        }
+
+        private void AddScoretoDB()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UpdateBoard()
+        {
+            string query = "SELECT Id,Date,PlayerName,CurrentScore FROM scoreBoard";
+
+            using(SqlConnection connection = new SqlConnection(connectionString)) {
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+
+                var ds = new DataSet();
+                adapter.Fill(ds);
+
+                dataGridView1.DataSource = ds.Tables[0];
+
+                dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+                dataGridView1.Sort(this.dataGridView1.Columns[0], ListSortDirection.Descending);
+            }
         }
     }
 }
