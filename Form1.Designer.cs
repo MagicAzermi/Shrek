@@ -63,6 +63,7 @@ namespace Shrek
             // 
             this.trackBar.BackColor = System.Drawing.Color.Cornsilk;
             this.trackBar.Location = new System.Drawing.Point(267, 9);
+            this.trackBar.Minimum = 1;
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(203, 45);
             this.trackBar.TabIndex = 1;
@@ -71,10 +72,12 @@ namespace Shrek
             // 
             // gameField
             // 
-            this.gameField.BackColor = System.Drawing.Color.OliveDrab;
+            this.gameField.BackColor = System.Drawing.Color.Black;
+            this.gameField.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gameField.BackgroundImage")));
+            this.gameField.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.gameField.Location = new System.Drawing.Point(11, 84);
             this.gameField.Name = "gameField";
-            this.gameField.Size = new System.Drawing.Size(750, 525);
+            this.gameField.Size = new System.Drawing.Size(750, 540);
             this.gameField.TabIndex = 2;
             // 
             // label2
@@ -106,7 +109,7 @@ namespace Shrek
             this.panel2.Font = new System.Drawing.Font("AuntJudyBetter", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel2.Location = new System.Drawing.Point(792, 84);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(493, 525);
+            this.panel2.Size = new System.Drawing.Size(493, 540);
             this.panel2.TabIndex = 5;
             // 
             // dataGridView1
@@ -166,7 +169,7 @@ namespace Shrek
             // 
             // gameTimer
             // 
-            this.gameTimer.Interval = 250;
+            this.gameTimer.Interval = 10;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // Form1
@@ -174,7 +177,7 @@ namespace Shrek
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1296, 628);
+            this.ClientSize = new System.Drawing.Size(1296, 642);
             this.Controls.Add(this.gameStart);
             this.Controls.Add(this.nameField);
             this.Controls.Add(this.panel2);

@@ -41,7 +41,7 @@ namespace Shrek
             gameField.Controls.Clear();
             snakeParts = null;
             scoreNumber.Text = "0";
-            snakeSize = 5;
+            snakeSize = 3;
             direction = "Right";
             location = new Point(120, 120);
 
@@ -57,16 +57,16 @@ namespace Shrek
         private void drawFood()
         {
             Random random = new Random();
-            int Xrnd = random.Next(50) * 15;
-            int Yrnd = random.Next(35) * 15;
+            int Xrnd = random.Next(25) * 30;
+            int Yrnd = random.Next(18) * 30;
             bool isSnake = true;
 
             while (isSnake) {
                 for (int i = 0; i < snakeSize; i++) {
                     if (snakeParts[i].Location == new Point(Xrnd, Yrnd))
                     {
-                        Xrnd = random.Next(50) * 15;
-                        Yrnd = random.Next(35) * 15;
+                        Xrnd = random.Next(25) * 30;
+                        Yrnd = random.Next(18) * 30;
                     }
 
                     else {
@@ -77,9 +77,10 @@ namespace Shrek
 
             if (isSnake == false) {
                 foodLocation = new Point(Xrnd, Yrnd);
-                food.Size = new Size(15, 15);
-                food.BackColor = Color.Red;
-                food.BorderStyle = BorderStyle.FixedSingle;
+                food.Size = new Size(30, 30);
+                //food.BackColor = Color.Red;
+                //food.BorderStyle = BorderStyle.FixedSingle;
+                food.Image = Image.FromFile("picsrc\\donkey.png");
                 food.Location = foodLocation;
                 gameField.Controls.Add(food);
             }
@@ -91,17 +92,18 @@ namespace Shrek
 
             for (int i = 0; i < snakeSize; i++) {
                 snakeParts[i] = new PictureBox();
-                snakeParts[i].Size = new Size(15, 15);
-                snakeParts[i].BackColor = Color.Green;
-                snakeParts[i].BorderStyle = BorderStyle.FixedSingle;
-                snakeParts[i].Location = new Point(location.X - (15 * i), location.Y);
+                snakeParts[i].Size = new Size(30, 30);
+                //snakeParts[i].BackColor = Color.Green;
+                snakeParts[i].Image = Image.FromFile("picsrc\\shrek2.png");
+                //snakeParts[i].BorderStyle = BorderStyle.FixedSingle;
+                snakeParts[i].Location = new Point(location.X - (30 * i), location.Y);
                 gameField.Controls.Add(snakeParts[i]);
             }
         }
 
         private void trackBar_Scroll(object sender, EventArgs e)
         {
-            gameTimer.Interval = 150 - (10 * trackBar.Value);
+            gameTimer.Interval = 510 - (50 * trackBar.Value);
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -121,22 +123,22 @@ namespace Shrek
                     point = snakeParts[i].Location;
                     if (direction == "Left")
                     {
-                        snakeParts[i].Location = new Point(snakeParts[i].Location.X - 15, snakeParts[i].Location.Y);
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X - 30, snakeParts[i].Location.Y);
                     }
 
                     if (direction == "Right")
                     {
-                        snakeParts[i].Location = new Point(snakeParts[i].Location.X + 15, snakeParts[i].Location.Y);
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X + 30, snakeParts[i].Location.Y);
                     }
 
                     if (direction == "Top")
                     {
-                        snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y - 15);
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y - 30);
                     }
 
                     if (direction == "Down")
                     {
-                        snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y + 15);
+                        snakeParts[i].Location = new Point(snakeParts[i].Location.X, snakeParts[i].Location.Y + 30);
                     }
                 }
                 else {
@@ -151,7 +153,7 @@ namespace Shrek
                 drawFood();
             }
 
-            if (snakeParts[0].Location.X < 0 || snakeParts[0].Location.X >= 750 || snakeParts[0].Location.Y < 0 || snakeParts[0].Location.Y >= 525) {
+            if (snakeParts[0].Location.X < 0 || snakeParts[0].Location.X >= 750 || snakeParts[0].Location.Y < 0 || snakeParts[0].Location.Y >= 540) {
                 stopGame();
             }
 
@@ -174,9 +176,10 @@ namespace Shrek
 
             for (int i = 0; i < snakeSize; i++) {
                 snakeParts[i] = new PictureBox();
-                snakeParts[i].Size = new Size(15, 15);
-                snakeParts[i].BackColor = Color.Green;
-                snakeParts[i].BorderStyle = BorderStyle.FixedSingle;
+                snakeParts[i].Size = new Size(30, 30);
+                snakeParts[i].Image = Image.FromFile("picsrc\\shrek2.png");
+                //snakeParts[i].BackColor = Color.Green;
+                //snakeParts[i].BorderStyle = BorderStyle.FixedSingle;
 
                 if (i == 0)
                 {
