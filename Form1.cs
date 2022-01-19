@@ -26,7 +26,7 @@ namespace Shrek
         PictureBox food = new PictureBox();
         Point foodLocation;
 
-        static String path = Path.GetFullPath("C:/Users/Суслан/Documents/GitHub/LazyProject/Shrek");
+        static String path = Path.GetFullPath("DB");
         static String dbName = "data.mdf";
         string connectionString = @"Data Source=(Localdb)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dbName + "; Integrated Security=True;";
 
